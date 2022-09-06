@@ -1,0 +1,20 @@
+.button-component {
+  outline: none;
+  appearance: none;
+  border: none;
+
+  padding: 5px 10px;
+  font-weight: bold;
+  color: #ffffff;
+
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-component--primary {
+  background: #20689a;
+}
+
+.button-component--danger {
+  background: #e94560;
+}
