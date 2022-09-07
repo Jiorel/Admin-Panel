@@ -8,9 +8,5 @@ export function Button({
   type,
   children,
 }: React.PropsWithChildren<ButtonProps>) {
-  return (
-    <button className={`button  button button--state-${type}`}>
-      {children}
-    </button>
-  );
+  return <button className={`button button--state-${type}`}>{children}</button>;
 }

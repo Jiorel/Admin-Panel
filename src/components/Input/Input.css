@@ -1,0 +1,29 @@
+.input {
+  outline: none;
+  display: block;
+
+  height: 40px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #cfd2cf;
+
+  color: #b2b1b9;
+}
+
+.input::placeholder {
+  color: #b2b1b9;
+}
+
+.input:not(.input--type-checkbox) {
+  padding: 0 10px;
+  appearance: none;
+}
+
+.input--type-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.input--type-checkbox:checked {
+  accent-color: #20689a;
+}

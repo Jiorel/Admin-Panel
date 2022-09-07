@@ -2,13 +2,15 @@
   outline: none;
   appearance: none;
   border: none;
+  display: block;
 
-  padding: 5px 10px;
+  padding: 0px 10px;
   font-weight: bold;
   color: #ffffff;
 
   border-radius: 5px;
   cursor: pointer;
+  height: 40px;
 }
 
 .button--state-primary {

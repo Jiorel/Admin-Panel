@@ -1,11 +1,18 @@
 import "./App.css";
-import { Button } from "./components/Button";
+import { Button, Input, Checkbox } from "./components";
 
 function App() {
   return (
     <div className="App">
-      <h1>First component for this project</h1>
-      <Button type="primary">Confirmare</Button>
+      {/* <div className="card">
+        <div className="card__header">
+          <span className="card__header__title">Sign In</span>
+        </div> */}
+      <Input type="email" placeholder="Email" />
+      <Input type="password" placeholder="Password" />
+      <Checkbox checked={true} />
+      <Button type="primary">Sign Up</Button>
+      {/* </div> */}
     </div>
   );
 }
