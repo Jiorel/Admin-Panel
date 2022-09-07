@@ -1,4 +1,4 @@
-.button-component {
+.button--component {
   outline: none;
   appearance: none;
   border: none;
@@ -11,10 +11,10 @@
   cursor: pointer;
 }
 
-.button-component--primary {
+.button--state-primary {
   background: #20689a;
 }
 
-.button-component--danger {
+.button--state-danger {
   background: #e94560;
 }

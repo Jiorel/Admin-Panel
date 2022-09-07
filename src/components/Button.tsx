@@ -7,7 +7,7 @@ interface IButtonProps {
 
 function Button({ type, title }: IButtonProps) {
   return (
-    <button className={`button-component button-component--${type}`}>
+    <button className={`button button--component button button--state-${type}`}>
       {title}
     </button>
   );
