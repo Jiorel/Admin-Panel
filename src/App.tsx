@@ -1,18 +1,72 @@
 import "./App.css";
-import { Button, Input, Checkbox } from "./components";
+import { Button, Input, Checkbox, Select } from "./components";
+import {
+  BarChart,
+  Bar,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from "recharts";
+
+const data = [
+  {
+    name: "Page A",
+    uv: 4000,
+    pv: 2400,
+  },
+  {
+    name: "Page B",
+    uv: 3000,
+    pv: 1398,
+  },
+  {
+    name: "Page C",
+    uv: 2000,
+    pv: 9800,
+  },
+  {
+    name: "Page D",
+    uv: 2780,
+    pv: 3908,
+  },
+  {
+    name: "Page E",
+    uv: 1890,
+    pv: 4800,
+  },
+  {
+    name: "Page F",
+    uv: 2390,
+    pv: 3800,
+  },
+  {
+    name: "Page G",
+    uv: 3490,
+    pv: 4300,
+  },
+];
 
 function App() {
   return (
     <div className="App">
-      {/* <div className="card">
-        <div className="card__header">
-          <span className="card__header__title">Sign In</span>
-        </div> */}
       <Input type="email" placeholder="Email" />
       <Input type="password" placeholder="Password" />
       <Checkbox checked={true} />
       <Button type="primary">Sign Up</Button>
-      {/* </div> */}
+      <Select options={["Masculin", "Feminin", "Ma abtin"]} />
+      <Select options={["iPhone 13Pro", "MacBook M1", "Lamborgini"]} />
+
+      <BarChart width={730} height={250} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="pv" fill="#8884d8" />
+        <Bar dataKey="uv" fill="#82ca9d" />
+      </BarChart>
     </div>
   );
 }
