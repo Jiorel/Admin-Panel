@@ -1,3 +1,2 @@
-export * from './auth/LogIn/LogIn'
-
-export * from './auth/SignUp/SignUp'
+export * from './auth/pages/LogIn/LogIn'
+export * from './auth/pages/SignUp/SignUp'

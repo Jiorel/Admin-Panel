@@ -1,18 +1,13 @@
-import "./Select.css";
+import "./Select.scss";
 
-interface ISelectProps {
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   options: string[];
   value: string;
-  onChange: (value: string) => void;
 }
 
-export function Select({ options, value, onChange }: ISelectProps) {
+export function Select({ options, value, className, ...props }: SelectProps) {
   return (
-    <select
-      className="select"
-      defaultValue={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
+    <select className={`select ${className}`} defaultValue={value} {...props}>
       {options.map((option, index) => {
         return <option key={index}>{option}</option>;
       })}

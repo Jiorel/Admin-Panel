@@ -1,17 +1,16 @@
-import "./Button.css";
+import "./Button.scss";
 
-interface ButtonProps {
-  type: "danger" | "primary";
-  onClick: () => void;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: "danger" | "primary";
 }
 
 export function Button({
-  type,
+  variant,
   children,
-  onClick,
+  ...props
 }: React.PropsWithChildren<ButtonProps>) {
   return (
-    <button className={`button button--state-${type}`} onClick={onClick}>
+    <button className={`button button--state-${variant}`} {...props}>
       {children}
     </button>
   );

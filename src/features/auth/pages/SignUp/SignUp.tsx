@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Input, Button } from "../../../components";
-import { Link } from "react-router-dom";
-import "./SignUp.css";
+import { AuthCard } from "../../components";
+import { Input, Button, Select } from "../../../../components";
+import "./SignUp.scss";
 
-export const SignUp = () => {
+export function SignUp() {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
+  const [gender, setGender] = useState("Ma abtin");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -15,41 +16,42 @@ export const SignUp = () => {
     }
   };
 
+  const genderSelectOptions = ["Masculin", "Femenin", "Ma abtin"];
+
   return (
-    <div className="signup-menu">
-      <div className="signup-menu__header">
-        <span className="signup-menu__header__title">Sign Up</span>
-        <Link className="signup-menu__header__login-link" to="/login">
-          Log In
-        </Link>
-      </div>
+    <AuthCard title="Sign Up" link="/login" linkTitle="Log In">
       <Input
         type="text"
         placeholder="Full name"
         value={fullName}
-        onChange={setFullName}
+        onChange={(e) => setFullName(e.target.value)}
       />
       <Input
         type="email"
         placeholder="Email"
         value={email}
-        onChange={setEmail}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Select
+        value={gender}
+        options={genderSelectOptions}
+        onChange={(e) => setGender(e.target.value)}
       />
       <Input
         type="password"
         placeholder="Password"
         value={password}
-        onChange={setPassword}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <Input
         type="password"
         placeholder="Confirm Password"
         value={confirmPassword}
-        onChange={setConfirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
       />
-      <Button type="primary" onClick={handleSignUp}>
+      <Button variant="primary" onClick={handleSignUp}>
         Sign Up
       </Button>
-    </div>
+    </AuthCard>
   );
-};
+}

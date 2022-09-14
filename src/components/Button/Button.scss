@@ -12,12 +12,12 @@
   border-radius: 5px;
   cursor: pointer;
   height: 40px;
-}
 
-.button--state-primary {
-  background: #20689a;
-}
+  &--state-primary {
+    background: #20689a;
+  }
 
-.button--state-danger {
-  background: #e94560;
+  &--state-danger {
+    background: #e94560;
+  }
 }
