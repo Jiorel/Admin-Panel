@@ -11,6 +11,10 @@
   display: flex;
   flex-direction: column;
 
+  @media screen and (max-width: 350px) {
+    width: unset;
+  }
+
   &__header {
     padding: 0 5px;
     margin-bottom: 10px;
