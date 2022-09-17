@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { AuthCard } from "../../components";
 import { Input, Button } from "../../../../components";
-import axios from "axios";
 import "./LogIn.scss";
 
 export function LogIn() {
@@ -11,28 +10,11 @@ export function LogIn() {
   const [error, setError] = useState("");
 
   const handleLogIn = async () => {
-    if (password === "") {
-      setError("Password is invalid");
-      return;
-    }
-
-    if (email === "") {
-      setError("Email is invalid");
-      return;
-    }
+    if (password === "") return setError("Password is invalid");
+    if (email === "") return setError("Email is invalid");
 
     setError("");
     setLoading(true);
-
-    try {
-      const requestUrl = "http://localhost:8000/login";
-      const requestData = { email, password };
-      await axios.post(requestUrl, requestData);
-    } catch (error) {
-      // setError(error.response.data);
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (

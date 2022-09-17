@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { AuthCard } from "../../components";
 import { Input, Button, Select } from "../../../../components";
-import axios from "axios";
 import "./SignUp.scss";
 
 export function SignUp() {
@@ -15,38 +14,13 @@ export function SignUp() {
   const [error, setError] = useState("");
 
   const handleSignUp = async () => {
-    if (password === "") {
-      setError("Invalid password");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError("Passwords don't match");
-      return;
-    }
-
-    if (email === "") {
-      setError("Invalid email");
-      return;
-    }
-
-    if (fullName === "") {
-      setError("Insert your full name");
-      return;
-    }
+    if (password === "") return setError("Invalid password");
+    if (password !== confirmPassword) return setError("Passwords don't match");
+    if (email === "") return setError("Invalid email");
+    if (fullName === "") return setError("Insert your full name");
 
     setLoading(true);
     setError("");
-
-    try {
-      const requestUrl = "http://localhost:8000/signup";
-      const requestData = { email, password, fullName, gender };
-      await axios.post(requestUrl, requestData);
-    } catch (error) {
-      // setError(error.response.data);
-    } finally {
-      setLoading(false);
-    }
   };
 
   const genderSelectOptions = ["Masculin", "Femenin", "Ma abtin"];
