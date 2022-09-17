@@ -5,12 +5,14 @@ interface AuthCardProps {
   title: string;
   link: string;
   linkTitle: string;
+  error: string;
 }
 
 export function AuthCard({
   title,
   link,
   linkTitle,
+  error,
   children,
 }: React.PropsWithChildren<AuthCardProps>) {
   return (
@@ -22,6 +24,7 @@ export function AuthCard({
         </Link>
       </div>
       {children}
+      {error && <div className="auth-card__error">{error}</div>}
     </div>
   );
 }

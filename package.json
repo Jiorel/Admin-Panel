@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:server": "json-server --watch ./server/database.json --port 8000",
+    "start:server": "json-server-auth --watch ./server/database.json --port 8000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -47,5 +47,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0"
   }
 }

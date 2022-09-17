@@ -35,4 +35,12 @@
       text-decoration: none;
     }
   }
+
+  &__error {
+    margin-top: 5px;
+    text-align: center;
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: bold;
+  }
 }
