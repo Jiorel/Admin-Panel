@@ -1,19 +1,8 @@
 import { request } from "../utils";
-
-interface LoginParams {
-  email: string;
-  password: string;
-}
+import { LoginParams, SignupParams } from "../types";
 
 export function login(data: LoginParams) {
   return request("/login", { method: "POST", data });
-}
-
-interface SignupParams {
-  email: string;
-  password: string;
-  fullName: string;
-  gender: string;
 }
 
 export function signup(data: SignupParams) {

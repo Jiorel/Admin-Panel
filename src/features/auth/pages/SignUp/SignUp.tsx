@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { AuthCard } from "../../components";
 import { Input, Button, Select } from "../../../../components";
+import { useAuth } from "../../../../contexts";
 import "./SignUp.scss";
 
 export function SignUp() {
+  const { signup } = useAuth();
+
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [gender, setGender] = useState("Ma abtin");
@@ -21,6 +24,7 @@ export function SignUp() {
 
     setLoading(true);
     setError("");
+    signup({ email, password, fullName, gender });
   };
 
   const genderSelectOptions = ["Masculin", "Femenin", "Ma abtin"];

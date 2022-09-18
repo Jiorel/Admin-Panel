@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { AuthCard } from "../../components";
 import { Input, Button } from "../../../../components";
+import { useAuth } from "../../../../contexts";
 import "./LogIn.scss";
 
 export function LogIn() {
+  const { login } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,6 +18,7 @@ export function LogIn() {
 
     setError("");
     setLoading(true);
+    login({ email, password });
   };
 
   return (
