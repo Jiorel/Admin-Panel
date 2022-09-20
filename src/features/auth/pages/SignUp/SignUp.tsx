@@ -2,10 +2,11 @@ import { useState } from "react";
 import { AuthCard } from "../../components";
 import { Input, Button, Select } from "../../../../components";
 import { useAuth } from "../../../../contexts";
-import "./SignUp.scss";
+import { useHistory } from "react-router-dom";
 
 export function SignUp() {
   const { signup } = useAuth();
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
@@ -24,7 +25,11 @@ export function SignUp() {
 
     setLoading(true);
     setError("");
-    signup({ email, password, fullName, gender });
+
+    try {
+      await signup({ email, password, fullName, gender });
+      history.push("/");
+    } catch (error) {}
   };
 
   const genderSelectOptions = ["Masculin", "Femenin", "Ma abtin"];

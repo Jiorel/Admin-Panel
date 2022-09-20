@@ -1,10 +1,11 @@
+import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { AuthCard } from "../../components";
 import { Input, Button } from "../../../../components";
 import { useAuth } from "../../../../contexts";
-import "./LogIn.scss";
 
 export function LogIn() {
+  const history = useHistory();
   const { login } = useAuth();
 
   const [email, setEmail] = useState("");
@@ -16,9 +17,13 @@ export function LogIn() {
     if (password === "") return setError("Password is invalid");
     if (email === "") return setError("Email is invalid");
 
-    setError("");
     setLoading(true);
-    login({ email, password });
+    setError("");
+
+    try {
+      await login({ email, password });
+      history.push("/");
+    } catch (error) {}
   };
 
   return (

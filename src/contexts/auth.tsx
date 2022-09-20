@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { LoginParams, SignupParams, User } from "../types";
 import { login, signup } from "../api";
 
-interface AuthContextValue {
+export interface AuthContextValue {
   user: User | null;
   loading: boolean;
   login: (data: LoginParams) => Promise<void>;
