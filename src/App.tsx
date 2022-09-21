@@ -1,7 +1,7 @@
 import { LogIn, SignUp } from "./features";
 import { Route, Switch } from "react-router-dom";
 import { useAuth } from "./contexts";
-// import { PrivateRoute } from "./components";
+import { Layout, PrivateRoute } from "./components";
 
 function App() {
   const { loading } = useAuth();
@@ -12,9 +12,9 @@ function App() {
 
   return (
     <Switch>
-      {/* <PrivateRoute exact path="/" component={null} /> */}
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={LogIn} />
+      <PrivateRoute path="/" component={Layout} />
     </Switch>
   );
 }
