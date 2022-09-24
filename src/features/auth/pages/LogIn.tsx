@@ -1,8 +1,8 @@
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { AuthCard } from "../../components";
-import { Input, Button } from "../../../../components";
-import { useAuth } from "../../../../contexts";
+import { AuthCard } from "../components";
+import { Input, Button } from "../../../components";
+import { useAuth } from "../../../contexts";
 
 export function LogIn() {
   const history = useHistory();

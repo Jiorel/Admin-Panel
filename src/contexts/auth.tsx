@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { LoginParams, SignupParams, User } from "../types";
 import * as api from "../api";
 
-export interface AuthContextValue {
+interface AuthContextValue {
   user: User | null;
   loading: boolean;
   login: (data: LoginParams) => Promise<void>;
@@ -28,12 +28,22 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
 
   const handleLogin = async (data: LoginParams) => {
     const response = await api.login(data);
+
+    if (response.status > 400) {
+      throw new Error("Authentication error");
+    }
+
     localStorage.setItem("user", JSON.stringify(response.data.user));
     setUser(response.data.user);
   };
 
   const handleSignup = async (data: SignupParams) => {
     const response = await api.signup(data);
+
+    if (response.status > 400) {
+      throw new Error("Authentication error");
+    }
+
     localStorage.setItem("user", JSON.stringify(response.data.user));
     setUser(response.data.user);
   };

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { AuthCard } from "../../components";
-import { Input, Button, Select } from "../../../../components";
-import { useAuth } from "../../../../contexts";
+import { AuthCard } from "../components";
+import { Input, Button, Select } from "../../../components";
+import { useAuth } from "../../../contexts";
 import { useHistory } from "react-router-dom";
 
 export function SignUp() {

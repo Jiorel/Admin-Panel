@@ -1,3 +1,12 @@
+export interface Post {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  date: string;
+  author: string;
+}
+
 export interface AddPostParams {
   title: string;
   description: string;
@@ -6,7 +15,7 @@ export interface AddPostParams {
   author: string;
 }
 
-export interface UpdatePostParams {
+export interface PatchPostParams {
   title: string;
   description: string;
   image: string;

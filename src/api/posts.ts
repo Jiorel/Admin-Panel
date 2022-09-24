@@ -1,4 +1,4 @@
-import { AddPostParams, UpdatePostParams } from "../types";
+import { AddPostParams, PatchPostParams } from "../types";
 import { request } from "../utils";
 
 export function getPosts() {
@@ -9,10 +9,10 @@ export function addPost(data: AddPostParams) {
   return request("/posts", { method: "POST", data });
 }
 
-export function updatePost(id: string, data: UpdatePostParams) {
-  return request("/posts/" + id, { method: "PUT", data });
+export function patchPost(id: number, data: PatchPostParams) {
+  return request("/posts/" + id, { method: "PATCH", data });
 }
 
-export function deletePost(id: string) {
+export function deletePost(id: number) {
   return request("/posts/" + id, { method: "DELTE" });
 }

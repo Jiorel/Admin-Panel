@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom";
+import { Posts } from "../../../features";
 import "./Content.scss";
 
 export function Content() {
@@ -7,9 +8,9 @@ export function Content() {
       <Switch>
         {/* <Route path="/dashboard" component={Dashboard} />
         <Route path="/posts/create" component={CreatePost} />
-        <Route path="/posts/:id/edit" component={EditPost} />
+        <Route path="/posts/:id/edit" component={EditPost} /> */}
         <Route path="/posts" component={Posts} />
-        <Route path="/users" component={Users} /> */}
+        {/* <Route path="/users" component={Users} /> */}
       </Switch>
     </div>
   );
