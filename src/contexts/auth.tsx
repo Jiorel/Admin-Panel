@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { LoginParams, SignupParams, User } from "../types";
-import { login, signup } from "../api";
+import * as api from "../api";
 
 export interface AuthContextValue {
   user: User | null;
@@ -27,13 +27,13 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
   const [loading, setLoading] = useState(true);
 
   const handleLogin = async (data: LoginParams) => {
-    const response = await login(data);
+    const response = await api.login(data);
     localStorage.setItem("user", JSON.stringify(response.data.user));
     setUser(response.data.user);
   };
 
   const handleSignup = async (data: SignupParams) => {
-    const response = await signup(data);
+    const response = await api.signup(data);
     localStorage.setItem("user", JSON.stringify(response.data.user));
     setUser(response.data.user);
   };

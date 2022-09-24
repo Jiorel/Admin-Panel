@@ -1,20 +1,15 @@
 {
-  "posts": [],
-  "users": [
+  "posts": [
     {
-      "email": "mrviorelb@mail.ru",
-      "password": "$2a$10$oz55GqEIYk9hZv3t19xiZeZzFYeDejCf5cPbeaxJWJ3Cz.1FblnUq",
-      "fullName": "Viorel Bobeico",
-      "gender": "Masculin",
-      "id": 1
-    },
-    {
-      "email": "vadimvg@mail.ru",
-      "password": "$2a$10$5LabEVzVec7Scil.EvCBFOhRSc7E1lEYPtXjP/NoLiAvmPRGH0vym",
-      "fullName": "vadim vengreniuc",
-      "gender": "Masculin",
+      "title": "Post",
+      "description": "Read this post",
+      "image": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+      "date": "24/09/2022",
+      "author": "Viorel Bobeico",
       "id": 2
-    },
+    }
+  ],
+  "users": [
     {
       "email": "viorel@mail.ru",
       "password": "$2a$10$tAxCjIoumht.2kT0xVwZxuUVEwC5GrDxqsWba5JrOIva.8ytQZcCW",
