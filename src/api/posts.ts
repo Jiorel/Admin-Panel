@@ -14,5 +14,5 @@ export function patchPost(id: number, data: PatchPostParams) {
 }
 
 export function deletePost(id: number) {
-  return request("/posts/" + id, { method: "DELTE" });
+  return request("/posts/" + id, { method: "DELETE" });
 }

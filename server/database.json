@@ -1,9 +1,9 @@
 {
   "posts": [
     {
-      "title": "Posasdasdat",
-      "description": "Read this post",
-      "image": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+      "title": "New post",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      "image": "https://www.w3schools.com/howto/img_avatar.png",
       "date": "24/09/2022",
       "author": "Viorel Bobeico",
       "id": 2

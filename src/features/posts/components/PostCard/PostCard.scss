@@ -1,0 +1,40 @@
+.post-card {
+  border: 1px solid #b6abab;
+  transition: 0.3s;
+  width: fit-content;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  &__title {
+    color: grey;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__image {
+    width: 50px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__date {
+    font-size: 12px;
+  }
+
+  &__author {
+    font-weight: bold;
+  }
+
+  &__content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
