@@ -1,7 +1,23 @@
 {
   "posts": [
     {
-      "title": "New post",
+      "title": "News",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      "image": "https://www.w3schools.com/howto/img_avatar.png",
+      "date": "24/09/2022",
+      "author": "Viorel Bobeico",
+      "id": 2
+    },
+    {
+      "title": "User",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      "image": "https://www.w3schools.com/howto/img_avatar.png",
+      "date": "24/09/2022",
+      "author": "Viorel Bobeico",
+      "id": 2
+    },
+    {
+      "title": "Manager",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
       "image": "https://www.w3schools.com/howto/img_avatar.png",
       "date": "24/09/2022",
@@ -13,8 +29,8 @@
     {
       "email": "viorel@mail.ru",
       "password": "$2a$10$tAxCjIoumht.2kT0xVwZxuUVEwC5GrDxqsWba5JrOIva.8ytQZcCW",
-      "fullName": "vvvv",
-      "gender": "Femenin",
+      "fullName": "Viorel Bobeico",
+      "gender": "Masculin",
       "id": 3
     }
   ]

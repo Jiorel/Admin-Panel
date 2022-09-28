@@ -1,18 +1,18 @@
 import { AddPostParams, PatchPostParams } from "../types";
-import { request } from "../utils";
+import { axiosInstance } from "../utils";
 
 export function getPosts() {
-  return request("/posts");
+  return axiosInstance.get("/posts");
 }
 
 export function addPost(data: AddPostParams) {
-  return request("/posts", { method: "POST", data });
+  return axiosInstance.post("/posts", data);
 }
 
 export function patchPost(id: number, data: PatchPostParams) {
-  return request("/posts/" + id, { method: "PATCH", data });
+  return axiosInstance.patch("/posts/" + id, data);
 }
 
 export function deletePost(id: number) {
-  return request("/posts/" + id, { method: "DELETE" });
+  return axiosInstance.delete("/posts/" + id);
 }

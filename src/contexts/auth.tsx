@@ -29,20 +29,12 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
   const handleLogin = async (data: LoginParams) => {
     const response = await api.login(data);
 
-    if (response.status > 400) {
-      throw new Error("Authentication error");
-    }
-
     localStorage.setItem("user", JSON.stringify(response.data.user));
     setUser(response.data.user);
   };
 
   const handleSignup = async (data: SignupParams) => {
     const response = await api.signup(data);
-
-    if (response.status > 400) {
-      throw new Error("Authentication error");
-    }
 
     localStorage.setItem("user", JSON.stringify(response.data.user));
     setUser(response.data.user);

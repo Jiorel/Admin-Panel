@@ -3,6 +3,7 @@ import { AuthCard } from "../components";
 import { Input, Button, Select } from "../../../components";
 import { useAuth } from "../../../contexts";
 import { useHistory } from "react-router-dom";
+import { AxiosError } from "axios";
 
 export function SignUp() {
   const { signup } = useAuth();
@@ -18,9 +19,7 @@ export function SignUp() {
   const [error, setError] = useState("");
 
   const handleSignUp = async () => {
-    if (password === "") return setError("Invalid password");
     if (password !== confirmPassword) return setError("Passwords don't match");
-    if (email === "") return setError("Invalid email");
     if (fullName === "") return setError("Insert your full name");
 
     setLoading(true);
@@ -29,7 +28,11 @@ export function SignUp() {
     try {
       await signup({ email, password, fullName, gender });
       history.push("/");
-    } catch (error) {}
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      setError(axiosError.response?.data as string);
+      setLoading(false);
+    }
   };
 
   const genderSelectOptions = ["Masculin", "Femenin", "Ma abtin"];

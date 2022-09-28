@@ -1,10 +1,10 @@
-import { request } from "../utils";
+import { axiosInstance } from "../utils";
 import { LoginParams, SignupParams } from "../types";
 
 export function login(data: LoginParams) {
-  return request("/login", { method: "POST", data });
+  return axiosInstance.post("/login", data);
 }
 
 export function signup(data: SignupParams) {
-  return request("/signup", { method: "POST", data });
+  return axiosInstance.post("/signup", data);
 }

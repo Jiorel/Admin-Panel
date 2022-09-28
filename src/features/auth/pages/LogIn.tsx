@@ -3,6 +3,7 @@ import { useState } from "react";
 import { AuthCard } from "../components";
 import { Input, Button } from "../../../components";
 import { useAuth } from "../../../contexts";
+import { AxiosError } from "axios";
 
 export function LogIn() {
   const history = useHistory();
@@ -14,16 +15,17 @@ export function LogIn() {
   const [error, setError] = useState("");
 
   const handleLogIn = async () => {
-    if (password === "") return setError("Password is invalid");
-    if (email === "") return setError("Email is invalid");
-
     setLoading(true);
     setError("");
 
     try {
       await login({ email, password });
       history.push("/");
-    } catch (error) {}
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      setError(axiosError.response?.data as string);
+      setLoading(false);
+    }
   };
 
   return (
