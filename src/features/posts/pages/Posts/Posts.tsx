@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import * as api from "../../../../api";
+import { Button } from "../../../../components";
 import { AddPostParams, PatchPostParams, Post } from "../../../../types";
 import { PostCard } from "../../components";
 import "./Posts.scss";
@@ -58,9 +59,14 @@ export function Posts() {
 
   return (
     <div className="posts">
-      {posts.map((post, index) => (
-        <PostCard key={index} post={post} />
-      ))}
+      <div className="posts__header">
+        <Button variant="primary">Add post</Button>
+      </div>
+      <div className="posts__content">
+        {posts.map((post, index) => (
+          <PostCard key={index} post={post} />
+        ))}
+      </div>
     </div>
   );
 }

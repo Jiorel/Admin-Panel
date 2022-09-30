@@ -6,7 +6,7 @@
       "image": "https://www.w3schools.com/howto/img_avatar.png",
       "date": "24/09/2022",
       "author": "Viorel Bobeico",
-      "id": 2
+      "id": 1
     },
     {
       "title": "User",
@@ -22,7 +22,47 @@
       "image": "https://www.w3schools.com/howto/img_avatar.png",
       "date": "24/09/2022",
       "author": "Viorel Bobeico",
+      "id": 3
+    },
+    {
+      "title": "News",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      "image": "https://www.w3schools.com/howto/img_avatar.png",
+      "date": "24/09/2022",
+      "author": "Viorel Bobeico",
+      "id": 4
+    },
+    {
+      "title": "News",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      "image": "https://www.w3schools.com/howto/img_avatar.png",
+      "date": "24/09/2022",
+      "author": "Viorel Bobeico",
+      "id": 1
+    },
+    {
+      "title": "User",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      "image": "https://www.w3schools.com/howto/img_avatar.png",
+      "date": "24/09/2022",
+      "author": "Viorel Bobeico",
       "id": 2
+    },
+    {
+      "title": "Manager",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      "image": "https://www.w3schools.com/howto/img_avatar.png",
+      "date": "24/09/2022",
+      "author": "Viorel Bobeico",
+      "id": 3
+    },
+    {
+      "title": "News",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      "image": "https://www.w3schools.com/howto/img_avatar.png",
+      "date": "24/09/2022",
+      "author": "Viorel Bobeico",
+      "id": 4
     }
   ],
   "users": [
@@ -31,7 +71,7 @@
       "password": "$2a$10$tAxCjIoumht.2kT0xVwZxuUVEwC5GrDxqsWba5JrOIva.8ytQZcCW",
       "fullName": "Viorel Bobeico",
       "gender": "Masculin",
-      "id": 3
+      "id": 1
     }
   ]
 }
