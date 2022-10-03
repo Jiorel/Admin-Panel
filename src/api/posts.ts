@@ -1,11 +1,12 @@
 import { AddPostParams, PatchPostParams } from "../types";
 import { axiosInstance } from "../utils";
 
-export function getPosts() {
-  return axiosInstance.get("/posts");
+export async function getPosts() {
+  const { data } = await axiosInstance.get("/posts");
+  return data;
 }
 
-export function addPost(data: AddPostParams) {
+export async function addPost(data: AddPostParams) {
   return axiosInstance.post("/posts", data);
 }
 

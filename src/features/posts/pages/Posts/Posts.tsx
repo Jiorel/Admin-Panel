@@ -3,20 +3,14 @@ import * as api from "../../../../api";
 import { Button } from "../../../../components";
 import { AddPostParams, PatchPostParams, Post } from "../../../../types";
 import { PostCard } from "../../components";
+import { useQuery } from "@tanstack/react-query";
 import "./Posts.scss";
 
 export function Posts() {
   const [posts, setPosts] = useState<Post[]>([]);
 
-  async function getPosts() {
-    const response = await api.getPosts();
-
-    if (response.status > 400) {
-      throw new Error("Couldn't get posts");
-    }
-    console.log(response.data);
-    setPosts(response.data);
-  }
+  const queryData = useQuery(["posts"], api.getPosts);
+  console.log(queryData);
 
   async function addPost(data: AddPostParams) {
     const response = await api.addPost(data);
@@ -53,17 +47,13 @@ export function Posts() {
     setPosts(posts.filter((post) => post.id !== id));
   }
 
-  useEffect(() => {
-    getPosts();
-  }, []);
-
   return (
     <div className="posts">
       <div className="posts__header">
         <Button variant="primary">Add post</Button>
       </div>
       <div className="posts__content">
-        {posts.map((post, index) => (
+        {queryData.data?.map((post: any, index: number) => (
           <PostCard key={index} post={post} />
         ))}
       </div>
