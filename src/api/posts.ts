@@ -6,7 +6,7 @@ export async function getPosts() {
   return data;
 }
 
-export async function addPost(data: AddPostParams) {
+export function addPost(data: AddPostParams) {
   return axiosInstance.post("/posts", data);
 }
 
