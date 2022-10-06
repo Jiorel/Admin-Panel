@@ -2,9 +2,7 @@ import { useAuth } from "../../../contexts";
 import { Button } from "../../Button/Button";
 import "./Navbar.scss";
 
-interface NavbarProps {}
-
-export function Navbar({}: NavbarProps) {
+export function Navbar() {
   const { user, logout } = useAuth();
 
   return (

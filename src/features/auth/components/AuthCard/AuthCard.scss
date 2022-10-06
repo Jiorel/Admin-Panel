@@ -1,15 +1,16 @@
 .auth-card {
+  width: 300px;
+  padding: 10px;
+
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px;
-  width: 300px;
 
-  background: #ffffff;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  background: #ffffff;
 
   @media screen and (max-width: 350px) {
     width: unset;

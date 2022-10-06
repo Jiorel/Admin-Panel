@@ -4,6 +4,8 @@ import { AuthProvider } from "./contexts";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
+
+import "react-datepicker/dist/react-datepicker.css";
 import "./index.scss";
 
 const client = new QueryClient();

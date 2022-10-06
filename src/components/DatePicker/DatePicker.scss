@@ -1,5 +1,8 @@
-.input {
+.datepicker {
   outline: none;
+  appearance: none;
+
+  padding: 0 10px;
   height: 40px;
 
   background: #ffffff;
@@ -9,10 +12,5 @@
 
   &::placeholder {
     color: #b2b1b9;
-  }
-
-  &:not(.input--type-checkbox) {
-    padding: 0 10px;
-    appearance: none;
   }
 }

@@ -3,3 +3,4 @@ export * from "./Input/Input";
 export * from "./Select/Select";
 export * from "./PrivateRoute";
 export * from "./Layout/Layout";
+export * from "./DatePicker/DatePicker";

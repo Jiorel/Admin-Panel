@@ -1,4 +1,5 @@
 // import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import * as api from "../../../../api";
 import { Button } from "../../../../components";
 // import { AddPostParams, PatchPostParams, Post } from "../../../../types";
@@ -7,19 +8,8 @@ import { useQuery } from "@tanstack/react-query";
 import "./Posts.scss";
 
 export function Posts() {
-  // const [posts, setPosts] = useState<Post[]>([]);
-
+  const history = useHistory();
   const { data, isLoading } = useQuery(["getPosts"], api.getPosts);
-
-  // async function addPost(data: AddPostParams) {
-  //   const response = await api.addPost(data);
-
-  //   if (response.status > 400) {
-  //     throw new Error("Couldn't create post");
-  //   }
-
-  //   setPosts([...posts, response.data]);
-  // }
 
   // async function patchPost(id: number, data: PatchPostParams) {
   //   const response = await api.patchPost(id, data);
@@ -46,12 +36,18 @@ export function Posts() {
   //   setPosts(posts.filter((post) => post.id !== id));
   // }
 
+  const handleAddPostClick = () => {
+    history.push("/posts/create");
+  };
+
   if (isLoading) return null;
 
   return (
     <div className="posts">
       <div className="posts__header">
-        <Button variant="primary">Add post</Button>
+        <Button variant="primary" onClick={handleAddPostClick}>
+          Add post
+        </Button>
       </div>
       <div className="posts__content">
         {data.map((post: any, index: number) => (

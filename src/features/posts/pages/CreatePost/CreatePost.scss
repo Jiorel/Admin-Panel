@@ -1,0 +1,33 @@
+.create-post {
+  width: 600px;
+  padding: 20px;
+
+  background: #ffffff;
+  border: 1px solid #b6abab;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__form {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+
+    .react-datepicker {
+      &__input-container {
+        display: flex;
+
+        .datepicker {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  &__error {
+    text-align: center;
+    font-weight: bold;
+    color: #ff0000;
+  }
+}
