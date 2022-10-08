@@ -1,40 +1,22 @@
-// import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as api from "../../../../api";
 import { Button } from "../../../../components";
-// import { AddPostParams, PatchPostParams, Post } from "../../../../types";
 import { PostCard } from "../../components";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Post } from "../../../../types";
 import "./Posts.scss";
 
 export function Posts() {
   const history = useHistory();
-  const { data, isLoading } = useQuery(["getPosts"], api.getPosts);
+  const queryClient = useQueryClient();
+  const { data, isLoading } = useQuery(["posts"], api.getPosts);
 
-  // async function patchPost(id: number, data: PatchPostParams) {
-  //   const response = await api.patchPost(id, data);
-
-  //   if (response.status > 400) {
-  //     throw new Error("Couldn't patch post");
-  //   }
-
-  //   const newPosts = [...posts];
-
-  //   const postIndex = newPosts.findIndex((post) => post.id === id);
-  //   newPosts[postIndex] = response.data;
-
-  //   setPosts(newPosts);
-  // }
-
-  // async function deletePost(id: number) {
-  //   const response = await api.deletePost(id);
-
-  //   if (response.status > 400) {
-  //     throw new Error("Couldn't delete post");
-  //   }
-
-  //   setPosts(posts.filter((post) => post.id !== id));
-  // }
+  const { mutate } = useMutation(api.deletePost, {
+    onSuccess: (_, postId) => {
+      const newPosts = data.filter((post: Post) => post.id !== postId);
+      queryClient.setQueryData(["posts"], newPosts);
+    },
+  });
 
   const handleAddPostClick = () => {
     history.push("/posts/create");
@@ -51,7 +33,7 @@ export function Posts() {
       </div>
       <div className="posts__content">
         {data.map((post: any, index: number) => (
-          <PostCard key={index} post={post} />
+          <PostCard key={index} post={post} onDelete={mutate} />
         ))}
       </div>
     </div>

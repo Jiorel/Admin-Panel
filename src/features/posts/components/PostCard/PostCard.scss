@@ -33,4 +33,9 @@
     flex-direction: column;
     justify-content: flex-start;
   }
+
+  &__controls {
+    display: flex;
+    gap: 10px;
+  }
 }

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { AddPostParams, PatchPostParams } from "../types";
 import { axiosInstance } from "../utils";
 
@@ -6,14 +7,22 @@ export async function getPosts() {
   return data;
 }
 
-export function addPost(data: AddPostParams) {
-  return axiosInstance.post("/posts", data);
+export async function getPostById(id: number) {
+  const { data } = await axiosInstance.get("/posts/" + id);
+  return data;
 }
 
-export function patchPost(id: number, data: PatchPostParams) {
-  return axiosInstance.patch("/posts/" + id, data);
+export async function addPost(params: AddPostParams) {
+  const { data } = await axiosInstance.post("/posts", params);
+  return data;
 }
 
-export function deletePost(id: number) {
-  return axiosInstance.delete("/posts/" + id);
+export async function patchPost(id: number, params: PatchPostParams) {
+  const { data } = await axiosInstance.patch("/posts/" + id, params);
+  return data;
+}
+
+export async function deletePost(id: number) {
+  const { data } = await axiosInstance.delete("/posts/" + id);
+  return data;
 }

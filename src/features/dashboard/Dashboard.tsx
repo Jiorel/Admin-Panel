@@ -5,7 +5,7 @@ import "./Dashboard.scss";
 
 export function Dashboard() {
   const { data: posts, isLoading: isPostsLoading } = useQuery(
-    ["getPosts"],
+    ["posts"],
     api.getPosts
   );
 
