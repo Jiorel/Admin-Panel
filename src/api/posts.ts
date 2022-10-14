@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import { AddPostParams, PatchPostParams } from "../types";
 import { axiosInstance } from "../utils";
 
@@ -25,4 +26,10 @@ export async function patchPost(id: number, params: PatchPostParams) {
 export async function deletePost(id: number) {
   const { data } = await axiosInstance.delete("/posts/" + id);
   return data;
+}
+
+// Queries
+
+export function usePostQuery(id: number | null) {
+  return useQuery(["post", id], () => (id ? getPostById(id) : null));
 }

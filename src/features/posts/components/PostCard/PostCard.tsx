@@ -1,6 +1,6 @@
-import { Post } from "../../../../types";
-import { Button } from "../../../../components";
 import { useHistory } from "react-router-dom";
+import { Button } from "../../../../components";
+import { Post } from "../../../../types";
 import "./PostCard.scss";
 
 interface PostCardProps {
@@ -8,30 +8,32 @@ interface PostCardProps {
   onDelete: (postId: number) => any;
 }
 
-export function PostCard({ post, onDelete }: PostCardProps) {
-  const { title, description, image, date, author } = post;
+export function PostCard({
+  post: { id, title, description, image, date, author },
+  onDelete,
+}: PostCardProps) {
   const history = useHistory();
 
   return (
     <div className="post-card">
-      <div
+      <img
         className="post-card__image"
         style={{ backgroundImage: `url("${image}")` }}
       />
       <div className="post-card__content-wrapper">
-        <div className="post-card__title">{title}</div>
-        <div className="post-card__author">{author}</div>
-        <div className="post-card__description">{description}</div>
-        <div className="post-card__date">{date}</div>
+        <h1 className="post-card__title">{title}</h1>
+        <h3 className="post-card__author">{author}</h3>
+        <p className="post-card__description">{description}</p>
+        <span className="post-card__date">{date}</span>
       </div>
       <div className="post-card__controls">
         <Button
           variant="primary"
-          onClick={() => history.push("/posts/edit/" + post.id)}
+          onClick={() => history.push("/posts/edit/" + id)}
         >
           Edit
         </Button>
-        <Button variant="danger" onClick={() => onDelete(post.id)}>
+        <Button variant="danger" onClick={() => onDelete(id)}>
           Delete
         </Button>
       </div>

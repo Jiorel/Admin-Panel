@@ -1,17 +1,18 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as api from "../../../../api";
 import { Button } from "../../../../components";
+import { Post, EditPostParams } from "../../../../types";
 import { PostCard } from "../../components";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Post } from "../../../../types";
 import "./Posts.scss";
 
 export function Posts() {
   const history = useHistory();
+
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery(["posts"], api.getPosts);
 
-  const { mutate } = useMutation(api.deletePost, {
+  const { mutate: deleteMutation } = useMutation(api.deletePost, {
     onSuccess: (_, postId) => {
       const newPosts = data.filter((post: Post) => post.id !== postId);
       queryClient.setQueryData(["posts"], newPosts);
@@ -33,7 +34,7 @@ export function Posts() {
       </div>
       <div className="posts__content">
         {data.map((post: any, index: number) => (
-          <PostCard key={index} post={post} onDelete={mutate} />
+          <PostCard key={index} post={post} onDelete={deleteMutation} />
         ))}
       </div>
     </div>

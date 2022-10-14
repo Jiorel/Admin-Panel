@@ -7,7 +7,7 @@ export function Navbar() {
 
   return (
     <div className="navbar">
-      <div className="navbar__user">{user?.fullName}</div>
+      <h1 className="navbar__user">{user?.fullName}</h1>
       <Button variant="primary" onClick={logout}>
         Logout
       </Button>

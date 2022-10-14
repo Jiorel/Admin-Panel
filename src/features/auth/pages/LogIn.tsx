@@ -1,9 +1,9 @@
-import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { AuthCard } from "../components";
+import { useHistory } from "react-router-dom";
+import { AxiosError } from "axios";
 import { Input, Button } from "../../../components";
 import { useAuth } from "../../../contexts";
-import { AxiosError } from "axios";
+import { AuthCard } from "../components";
 
 export function LogIn() {
   const history = useHistory();

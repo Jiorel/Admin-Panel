@@ -8,4 +8,5 @@ export interface SignupParams {
   password: string;
   fullName: string;
   gender: string;
+  role: "MODERATOR" | "ADMINISTRATOR";
 }

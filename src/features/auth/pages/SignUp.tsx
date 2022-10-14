@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { AuthCard } from "../components";
-import { Input, Button, Select } from "../../../components";
-import { useAuth } from "../../../contexts";
 import { useHistory } from "react-router-dom";
 import { AxiosError } from "axios";
+import { Input, Button, Select } from "../../../components";
+import { useAuth } from "../../../contexts";
+import { AuthCard } from "../components";
 
 export function SignUp() {
   const { signup } = useAuth();
@@ -26,7 +26,7 @@ export function SignUp() {
     setError("");
 
     try {
-      await signup({ email, password, fullName, gender });
+      await signup({ email, password, fullName, gender, role: "MODERATOR" });
       history.push("/");
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -35,7 +35,14 @@ export function SignUp() {
     }
   };
 
-  const genderSelectOptions = ["Masculin", "Femenin", "Ma abtin"];
+  const genderSelectOptions = [
+    { label: "Masculin", value: "masculin" },
+    { label: "Feminin", value: "feminin" },
+    {
+      label: "Ma abtin",
+      value: "none",
+    },
+  ];
 
   return (
     <AuthCard title="Sign Up" link="/login" linkTitle="Log In" error={error}>
@@ -43,12 +50,14 @@ export function SignUp() {
         type="text"
         placeholder="Full name"
         value={fullName}
+        required
         onChange={(e) => setFullName(e.target.value)}
       />
       <Input
         type="email"
         placeholder="Email"
         value={email}
+        required
         onChange={(e) => setEmail(e.target.value)}
       />
       <Select
@@ -60,12 +69,14 @@ export function SignUp() {
         type="password"
         placeholder="Password"
         value={password}
+        required
         onChange={(e) => setPassword(e.target.value)}
       />
       <Input
         type="password"
         placeholder="Confirm Password"
         value={confirmPassword}
+        required
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
       <Button variant="primary" onClick={handleSignUp} disabled={loading}>

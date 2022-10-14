@@ -19,4 +19,10 @@ export interface PatchPostParams {
   title: string;
   description: string;
   image: string;
+  date: string;
+  author: string;
+}
+
+export interface EditPostParams {
+  id: string;
 }

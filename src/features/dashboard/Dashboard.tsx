@@ -1,6 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import * as api from "../../api";
-import { useQuery } from "@tanstack/react-query";
 import "./Dashboard.scss";
 
 export function Dashboard() {
