@@ -1,5 +1,9 @@
+export type Role = "MODERATOR" | "ADMINISTRATOR";
+
 export interface User {
-  email: string;
+  id: number;
   fullName: string;
+  email: string;
   gender: string;
+  role: Role;
 }

@@ -1,8 +1,8 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as api from "../../../../api";
 import { Button } from "../../../../components";
-import { Post, EditPostParams } from "../../../../types";
+import { Post } from "../../../../types";
 import { PostCard } from "../../components";
 import "./Posts.scss";
 
@@ -33,7 +33,7 @@ export function Posts() {
         </Button>
       </div>
       <div className="posts__content">
-        {data.map((post: any, index: number) => (
+        {data.map((post: Post, index: number) => (
           <PostCard key={index} post={post} onDelete={deleteMutation} />
         ))}
       </div>

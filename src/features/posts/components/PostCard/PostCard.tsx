@@ -19,6 +19,7 @@ export function PostCard({
       <img
         className="post-card__image"
         style={{ backgroundImage: `url("${image}")` }}
+        alt=""
       />
       <div className="post-card__content-wrapper">
         <h1 className="post-card__title">{title}</h1>

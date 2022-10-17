@@ -31,8 +31,32 @@
       "password": "$2a$10$tAxCjIoumht.2kT0xVwZxuUVEwC5GrDxqsWba5JrOIva.8ytQZcCW",
       "fullName": "Viorel Bobeico",
       "gender": "Masculin",
-      "role": "MODERATOR",
+      "role": "ADMINISTRATOR",
       "id": 1
+    },
+    {
+      "email": "ciudic@mail.ru",
+      "password": "$2a$10$tAxCjIoumht.2kT0xVwZxuUVEwC5GrDxqsWba5JrOIva.8ytQZcCW",
+      "fullName": "Ciuvac Bobeico",
+      "gender": "Masculin",
+      "role": "MODERATOR",
+      "id": 2
+    },
+    {
+      "email": "viorel@mail.ru",
+      "password": "$2a$10$tAxCjIoumht.2kT0xVwZxuUVEwC5GrDxqsWba5JrOIva.8ytQZcCW",
+      "fullName": "Viorel Bobeico",
+      "gender": "Masculin",
+      "role": "MODERATOR",
+      "id": 3
+    },
+    {
+      "email": "viorel@mail.ru",
+      "password": "$2a$10$tAxCjIoumht.2kT0xVwZxuUVEwC5GrDxqsWba5JrOIva.8ytQZcCW",
+      "fullName": "Viorel Bobeico",
+      "gender": "Masculin",
+      "role": "MODERATOR",
+      "id": 4
     }
   ]
 }

@@ -1,3 +1,5 @@
+import { Role } from "./user";
+
 export interface LoginParams {
   email: string;
   password: string;
@@ -8,5 +10,5 @@ export interface SignupParams {
   password: string;
   fullName: string;
   gender: string;
-  role: "MODERATOR" | "ADMINISTRATOR";
+  role: Role;
 }

@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import { Posts, Dashboard, PostForm } from "../../../features";
+import { Users } from "../../../features/users";
 import "./Content.scss";
 
 export function Content() {
@@ -10,7 +11,7 @@ export function Content() {
         <Route path="/posts/create" component={() => <PostForm />} />
         <Route path="/posts/edit/:id" component={() => <PostForm isEdit />} />
         <Route path="/posts" component={Posts} />
-        {/* <Route path="/users" component={Users} /> */}
+        <Route path="/users" component={Users} />
       </Switch>
     </div>
   );

@@ -9,7 +9,12 @@ export function Dashboard() {
     api.getPosts
   );
 
-  if (isPostsLoading) return null;
+  const { data: users, isLoading: isUsersLoading } = useQuery(
+    ["users"],
+    api.getUsers
+  );
+
+  if (isPostsLoading || isUsersLoading) return null;
 
   const chartData = [
     {
@@ -19,7 +24,7 @@ export function Dashboard() {
     },
     {
       name: "users",
-      value: 4,
+      value: users.length,
       color: "#FD841F",
     },
   ];
