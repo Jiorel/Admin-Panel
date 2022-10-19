@@ -4,6 +4,7 @@ import { AxiosError } from "axios";
 import { Input, Button, Select } from "../../../components";
 import { useAuth } from "../../../contexts";
 import { AuthCard } from "../components";
+import { genderSelectOptions } from "../../../config";
 
 export function SignUp() {
   const { signup } = useAuth();
@@ -11,7 +12,7 @@ export function SignUp() {
 
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
-  const [gender, setGender] = useState("Ma abtin");
+  const [gender, setGender] = useState("none");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -34,15 +35,6 @@ export function SignUp() {
       setLoading(false);
     }
   };
-
-  const genderSelectOptions = [
-    { label: "Masculin", value: "masculin" },
-    { label: "Feminin", value: "feminin" },
-    {
-      label: "Ma abtin",
-      value: "none",
-    },
-  ];
 
   return (
     <AuthCard title="Sign Up" link="/login" linkTitle="Log In" error={error}>

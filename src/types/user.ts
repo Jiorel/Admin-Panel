@@ -7,3 +7,23 @@ export interface User {
   gender: string;
   role: Role;
 }
+
+export interface AddUserParams {
+  fullName: string;
+  email: string;
+  gender: string;
+  role: Role;
+  password: string;
+}
+
+export interface PatchUserParams {
+  fullName: string;
+  email: string;
+  gender: string;
+  role: Role;
+  password: string;
+}
+
+export interface EditUserParams {
+  id: string;
+}

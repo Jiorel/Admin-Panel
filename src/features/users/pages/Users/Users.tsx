@@ -1,4 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useHistory } from "react-router-dom";
 import * as api from "../../../../api";
 import { Button } from "../../../../components";
 import { useAuth } from "../../../../contexts";
@@ -6,13 +7,37 @@ import { User } from "../../../../types";
 import "./Users.scss";
 
 export function Users() {
+  const history = useHistory();
+
+  const queryClient = useQueryClient();
+
   const { user } = useAuth();
   const { data, isLoading } = useQuery(["users"], api.getUsers);
 
+  const handleAddUserClick = () => {
+    history.push("/users/create");
+  };
+
+  const { mutate: deleteMutation } = useMutation(api.deleteUser, {
+    onSuccess: (_, userId) => {
+      const newUsers = data.filter((user: User) => user.id !== userId);
+      queryClient.setQueryData(["users"], newUsers);
+    },
+  });
+
   if (isLoading || user === null) return null;
+
+  const isAdministrator = user.role === "ADMINISTRATOR";
 
   return (
     <div className="users">
+      <div className="users-header">
+        {isAdministrator && (
+          <Button variant="primary" onClick={handleAddUserClick}>
+            Add User
+          </Button>
+        )}
+      </div>
       <div className="users-content">
         <table className="users-content__table">
           <thead>
@@ -22,7 +47,7 @@ export function Users() {
               <th>Email</th>
               <th>Gender</th>
               <th>Role</th>
-              {user.role === "ADMINISTRATOR" && <th>Actions</th>}
+              {isAdministrator && <th>Actions</th>}
             </tr>
           </thead>
           <tbody>
@@ -35,10 +60,20 @@ export function Users() {
                     <td>{fullName}</td>
                     <td>{gender}</td>
                     <td>{role}</td>
-                    {user.role === "ADMINISTRATOR" && (
+                    {isAdministrator && (
                       <td className="users-content__table__actions">
-                        <Button variant="primary">Edit</Button>
-                        <Button variant="danger">Delete</Button>
+                        <Button
+                          variant="primary"
+                          onClick={() => history.push("/users/edit/" + id)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={() => deleteMutation(id)}
+                        >
+                          Delete
+                        </Button>
                       </td>
                     )}
                   </tr>
