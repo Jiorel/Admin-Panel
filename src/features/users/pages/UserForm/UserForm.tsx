@@ -77,13 +77,18 @@ export function UserForm({ isEdit = false }: UserFormParams) {
           value={role}
           onChange={(e) => setRole(e.target.value as Role)}
         />
-        <Input
-          type="text"
-          placeholder="Password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        {isEdit ? (
+          <div />
+        ) : (
+          <Input
+            type="text"
+            placeholder="Password"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        )}
+
         <Button
           variant="primary"
           onClick={() => {
