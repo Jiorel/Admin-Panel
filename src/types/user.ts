@@ -21,7 +21,6 @@ export interface PatchUserParams {
   email: string;
   gender: string;
   role: Role;
-  password: string;
 }
 
 export interface EditUserParams {

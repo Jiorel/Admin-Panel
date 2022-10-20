@@ -38,16 +38,6 @@ export function UserForm({ isEdit = false }: UserFormParams) {
     { label: "Moderator", value: "MODERATOR" },
   ];
 
-  const generateRandomPassword = () => {
-    let password = "";
-
-    for (let i = 0; i < 4; i++) {
-      password += Math.floor(Math.random() * 8);
-    }
-
-    return password;
-  };
-
   useEffect(() => {
     if (!postQuery.data) return;
     const { fullName, email, gender, role } = postQuery.data;
@@ -56,7 +46,6 @@ export function UserForm({ isEdit = false }: UserFormParams) {
     setEmail(email);
     setGender(gender);
     setRole(role);
-    setPassword(generateRandomPassword());
   }, [postQuery.data]);
 
   if (postQuery.isLoading) return null;
@@ -99,7 +88,7 @@ export function UserForm({ isEdit = false }: UserFormParams) {
           variant="primary"
           onClick={() => {
             isEdit
-              ? editMutation({ fullName, email, gender, role, password })
+              ? editMutation({ fullName, email, gender, role })
               : createMutation({ fullName, email, gender, role, password });
           }}
         >

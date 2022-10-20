@@ -19,9 +19,9 @@
   ],
   "users": [
     {
-      "email": "viorel@mail.com",
-      "password": "$2a$10$qs40InoLFWZfFLddAUemVeMfiUYrHr0WR2Fl.K.QhAW1wfPSOZ/zu",
-      "fullName": "Viorel Bobeico ",
+      "email": "bobeico@gmail.com",
+      "password": "$2a$10$v7YlGFwx24dpVg35h08V1egaWpY63wyU0LPKrDv./3u.xuUEHW2/e",
+      "fullName": "Viorel Bobeico",
       "gender": "masculin",
       "role": "ADMINISTRATOR",
       "id": 1
