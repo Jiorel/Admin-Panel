@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { LoginParams, SignupParams, User } from "../types";
-import * as api from "../api";
+import { Login, Signup, User } from "types";
+import * as api from "api";
 
 interface AuthContextValue {
   user: User | null;
   loading: boolean;
-  login: (data: LoginParams) => Promise<void>;
-  signup: (data: SignupParams) => Promise<void>;
+  login: (data: Login) => Promise<void>;
+  signup: (data: Signup) => Promise<void>;
   logout: () => void;
 }
 
@@ -26,14 +26,14 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const handleLogin = async (data: LoginParams) => {
+  const handleLogin = async (data: Login) => {
     const response = await api.login(data);
 
     localStorage.setItem("user", JSON.stringify(response.data.user));
     setUser(response.data.user);
   };
 
-  const handleSignup = async (data: SignupParams) => {
+  const handleSignup = async (data: Signup) => {
     const response = await api.signup(data);
 
     localStorage.setItem("user", JSON.stringify(response.data.user));

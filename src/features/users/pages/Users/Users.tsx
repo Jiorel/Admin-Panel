@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useHistory } from "react-router-dom";
-import * as api from "../../../../api";
-import { Button } from "../../../../components";
-import { useAuth } from "../../../../contexts";
-import { User } from "../../../../types";
+import * as api from "api";
+import { Button } from "components";
+import { useAuth } from "contexts";
+import { User } from "types";
 import "./Users.scss";
 
 export function Users() {

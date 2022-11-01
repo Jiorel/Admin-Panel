@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
-import { useAuth } from "./contexts";
-import { LogIn, SignUp } from "./features";
-import { Layout, PrivateRoute } from "./components";
+import { useAuth } from "contexts";
+import { LogIn, SignUp } from "features";
+import { Layout, PrivateRoute } from "components";
 
 function App() {
   const { loading } = useAuth();

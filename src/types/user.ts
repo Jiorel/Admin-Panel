@@ -8,21 +8,12 @@ export interface User {
   role: Role;
 }
 
-export interface AddUserParams {
-  fullName: string;
-  email: string;
-  gender: string;
-  role: Role;
+export interface AddUser extends Omit<User, "id"> {
   password: string;
 }
 
-export interface PatchUserParams {
-  fullName: string;
-  email: string;
-  gender: string;
-  role: Role;
-}
+export interface PatchUser extends Omit<User, "id"> {}
 
-export interface EditUserParams {
+export interface EditUser {
   id: string;
 }

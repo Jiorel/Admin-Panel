@@ -1,10 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
+import { useUserQuery } from "hooks/queries";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import * as api from "../../../../api";
-import { Button, Input, Select } from "../../../../components";
-import { genderSelectOptions } from "../../../../config";
-import { EditUserParams, PatchUserParams, Role } from "../../../../types";
+import * as api from "api";
+import { Button, Input, Select } from "components";
+import { genderSelectOptions } from "config";
+import { EditUser, PatchUser, Role } from "types";
 import "./UserForm.scss";
 
 interface UserFormParams {
@@ -13,7 +14,7 @@ interface UserFormParams {
 
 export function UserForm({ isEdit = false }: UserFormParams) {
   const history = useHistory();
-  const { id } = useParams<EditUserParams>();
+  const { id } = useParams<EditUser>();
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,14 +23,14 @@ export function UserForm({ isEdit = false }: UserFormParams) {
   const [role, setRole] = useState<Role>("MODERATOR");
 
   const userId = isEdit ? parseInt(id) : null;
-  const postQuery = api.useUserQuery(userId);
+  const postQuery = useUserQuery(userId);
 
   const { mutate: createMutation } = useMutation(api.addUser, {
     onSuccess: () => history.push("/users"),
   });
 
   const { mutate: editMutation } = useMutation(
-    (params: PatchUserParams) => api.patchUser(parseInt(id), params),
+    (params: PatchUser) => api.patchUser(parseInt(id), params),
     { onSuccess: () => history.push("/users") }
   );
 

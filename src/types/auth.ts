@@ -1,13 +1,11 @@
 import { Role } from "./user";
 
-export interface LoginParams {
+export interface Login {
   email: string;
   password: string;
 }
 
-export interface SignupParams {
-  email: string;
-  password: string;
+export interface Signup extends Login {
   fullName: string;
   gender: string;
   role: Role;

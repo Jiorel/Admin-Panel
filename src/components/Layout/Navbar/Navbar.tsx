@@ -1,4 +1,4 @@
-import { useAuth } from "../../../contexts";
+import { useAuth } from "contexts";
 import { Button } from "../../Button/Button";
 import "./Navbar.scss";
 

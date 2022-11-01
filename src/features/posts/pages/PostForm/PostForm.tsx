@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import * as api from "../../../../api";
-import { Input, DatePicker, Button } from "../../../../components";
-import { EditPostParams, PatchPostParams } from "../../../../types";
+import * as api from "api";
+import { Input, DatePicker, Button } from "components";
+import { EditPost, PatchPost } from "types";
 import "./PostForm.scss";
+import { usePostQuery } from "hooks/queries";
 
 interface PostFormProps {
   isEdit?: boolean;
@@ -12,7 +13,7 @@ interface PostFormProps {
 
 export function PostForm({ isEdit = false }: PostFormProps) {
   const history = useHistory();
-  const { id } = useParams<EditPostParams>();
+  const { id } = useParams<EditPost>();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,14 +22,14 @@ export function PostForm({ isEdit = false }: PostFormProps) {
   const [author, setAuthor] = useState("");
 
   const postId = isEdit ? parseInt(id) : null;
-  const postQuery = api.usePostQuery(postId);
+  const postQuery = usePostQuery(postId);
 
   const { mutate: createMutation } = useMutation(api.addPost, {
     onSuccess: () => history.push("/posts"),
   });
 
   const { mutate: editMutation } = useMutation(
-    (params: PatchPostParams) => api.patchPost(parseInt(id), params),
+    (params: PatchPost) => api.patchPost(parseInt(id), params),
     { onSuccess: () => history.push("/posts") }
   );
 

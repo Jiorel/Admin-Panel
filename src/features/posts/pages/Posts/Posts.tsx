@@ -1,8 +1,8 @@
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import * as api from "../../../../api";
-import { Button } from "../../../../components";
-import { Post } from "../../../../types";
+import * as api from "api";
+import { Button } from "components";
+import { Post } from "types";
 import { PostCard } from "../../components";
 import "./Posts.scss";
 

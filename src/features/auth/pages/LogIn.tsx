@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AxiosError } from "axios";
-import { Input, Button } from "../../../components";
-import { useAuth } from "../../../contexts";
+import { Input, Button } from "components";
+import { useAuth } from "contexts";
 import { AuthCard } from "../components";
 
 export function LogIn() {

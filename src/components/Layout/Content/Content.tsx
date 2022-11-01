@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
-import { Posts, Dashboard, PostForm } from "../../../features";
-import { UserForm, Users } from "../../../features/users";
+import { Posts, Dashboard, PostForm } from "features";
+import { UserForm, Users } from "features/users";
 
 import "./Content.scss";
 

@@ -7,22 +7,10 @@ export interface Post {
   author: string;
 }
 
-export interface AddPostParams {
-  title: string;
-  description: string;
-  image: string;
-  date: string;
-  author: string;
-}
+export interface AddPost extends Omit<Post, "id"> {}
 
-export interface PatchPostParams {
-  title: string;
-  description: string;
-  image: string;
-  date: string;
-  author: string;
-}
+export interface PatchPost extends AddPost {}
 
-export interface EditPostParams {
+export interface EditPost {
   id: string;
 }

@@ -18,7 +18,7 @@ export function AuthCard({
   return (
     <div className="auth-card">
       <div className="auth-card__header">
-        <span className="auth-card__header__title">{title}</span>
+        <h2 className="auth-card__header__title">{title}</h2>
         <Link className="auth-card__header__link" to={link}>
           {linkTitle}
         </Link>

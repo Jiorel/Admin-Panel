@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AxiosError } from "axios";
-import { Input, Button, Select } from "../../../components";
-import { useAuth } from "../../../contexts";
+import { Input, Button, Select } from "components";
+import { genderSelectOptions } from "config";
+import { useAuth } from "contexts";
 import { AuthCard } from "../components";
-import { genderSelectOptions } from "../../../config";
 
 export function SignUp() {
   const { signup } = useAuth();

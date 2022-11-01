@@ -1,5 +1,5 @@
 import { Redirect, Route, RouteProps } from "react-router-dom";
-import { useAuth } from "../contexts";
+import { useAuth } from "contexts";
 
 interface PrivateRouteProps extends RouteProps {
   component: React.ComponentType<any>;

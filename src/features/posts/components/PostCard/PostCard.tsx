@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
-import { Button } from "../../../../components";
-import { Post } from "../../../../types";
+import { Button } from "components";
+import { Post } from "types";
 import "./PostCard.scss";
 
 interface PostCardProps {
@@ -22,10 +22,10 @@ export function PostCard({
         alt=""
       />
       <div className="post-card__content-wrapper">
-        <h1 className="post-card__title">{title}</h1>
+        <h2 className="post-card__title">{title}</h2>
         <h3 className="post-card__author">{author}</h3>
         <p className="post-card__description">{description}</p>
-        <span className="post-card__date">{date}</span>
+        <h3 className="post-card__date">{date}</h3>
       </div>
       <div className="post-card__controls">
         <Button
