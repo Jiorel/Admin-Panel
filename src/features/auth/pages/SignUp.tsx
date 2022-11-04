@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { AxiosError } from "axios";
 import { Input, Button, Select } from "components";
 import { genderSelectOptions } from "config";
 import { useAuth } from "contexts";
 import { AuthCard } from "../components";
+import { useMutation } from "@tanstack/react-query";
 
 export function SignUp() {
   const { signup } = useAuth();
@@ -15,25 +15,18 @@ export function SignUp() {
   const [gender, setGender] = useState("none");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const { mutate, isLoading } = useMutation(signup, {
+    onSuccess: () => history.push("/"),
+    onError: (error: any) => setError(error.response.data),
+  });
 
   const handleSignUp = async () => {
     if (password !== confirmPassword) return setError("Passwords don't match");
     if (fullName === "") return setError("Insert your full name");
 
-    setLoading(true);
-    setError("");
-
-    try {
-      await signup({ email, password, fullName, gender, role: "MODERATOR" });
-      history.push("/");
-    } catch (error) {
-      const axiosError = error as AxiosError;
-      setError(axiosError.response?.data as string);
-      setLoading(false);
-    }
+    mutate({ fullName, email, gender, role: "MODERATOR", password });
   };
 
   return (
@@ -71,7 +64,7 @@ export function SignUp() {
         required
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
-      <Button variant="primary" onClick={handleSignUp} disabled={loading}>
+      <Button variant="primary" onClick={handleSignUp} disabled={isLoading}>
         Sign Up
       </Button>
     </AuthCard>

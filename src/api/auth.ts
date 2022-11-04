@@ -1,5 +1,5 @@
 import { Login, Signup } from "types";
-import { axiosInstance } from "utils";
+import { axiosInstance } from "./axios";
 
 export function login(data: Login) {
   return axiosInstance.post("/login", data);

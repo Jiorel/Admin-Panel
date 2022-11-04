@@ -12,7 +12,11 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 
 export function Select({ options, value, className, ...props }: SelectProps) {
   return (
-    <select className={`select ${className || ""}`} value={value} {...props}>
+    <select
+      className={`select input-field ${className || ""}`}
+      value={value}
+      {...props}
+    >
       {options.map(({ label, value }, index) => {
         return (
           <option key={index} value={value}>

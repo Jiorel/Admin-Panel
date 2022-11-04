@@ -6,6 +6,10 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export function Input({ type, ...props }: InputProps) {
   return (
-    <input className={`input input--type-${type}`} type={type} {...props} />
+    <input
+      className={`input input--type-${type} input-field`}
+      type={type}
+      {...props}
+    />
   );
 }

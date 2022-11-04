@@ -1,12 +1,6 @@
+@import "sass/variables.scss";
+
 .select {
-  outline: none;
-  appearance: none;
   display: block;
-
-  padding: 0 10px;
-  height: 40px;
-  background: white;
-  border: 1px solid #cfd2cf;
-
-  color: #b2b1b9;
+  color: $input-placeholder-color;
 }

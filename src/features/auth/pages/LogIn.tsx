@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { AxiosError } from "axios";
+import { useMutation } from "@tanstack/react-query";
 import { Input, Button } from "components";
 import { useAuth } from "contexts";
 import { AuthCard } from "../components";
@@ -11,21 +11,15 @@ export function LogIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleLogIn = async () => {
-    setLoading(true);
-    setError("");
+  const { mutate, isLoading } = useMutation(login, {
+    onSuccess: () => history.push("/posts"),
+    onError: (error: any) => setError(error.response.data),
+  });
 
-    try {
-      await login({ email, password });
-      history.push("/");
-    } catch (error) {
-      const axiosError = error as AxiosError;
-      setError(axiosError.response?.data as string);
-      setLoading(false);
-    }
+  const handleLogin = () => {
+    mutate({ email, password });
   };
 
   return (
@@ -42,7 +36,7 @@ export function LogIn() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button variant="primary" onClick={handleLogIn} disabled={loading}>
+      <Button variant="primary" onClick={handleLogin} disabled={isLoading}>
         Log In
       </Button>
     </AuthCard>

@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
+import { usePostQuery } from "hooks/queries";
 import * as api from "api";
 import { Input, DatePicker, Button } from "components";
 import { EditPost, PatchPost } from "types";
 import "./PostForm.scss";
-import { usePostQuery } from "hooks/queries";
 
-interface PostFormProps {
-  isEdit?: boolean;
-}
-
-export function PostForm({ isEdit = false }: PostFormProps) {
+export function PostForm() {
   const history = useHistory();
   const { id } = useParams<EditPost>();
 
@@ -21,17 +17,26 @@ export function PostForm({ isEdit = false }: PostFormProps) {
   const [date, setDate] = useState<Date>(new Date());
   const [author, setAuthor] = useState("");
 
-  const postId = isEdit ? parseInt(id) : null;
+  const postId = id ? parseInt(id) : null;
   const postQuery = usePostQuery(postId);
 
-  const { mutate: createMutation } = useMutation(api.addPost, {
-    onSuccess: () => history.push("/posts"),
-  });
-
-  const { mutate: editMutation } = useMutation(
-    (params: PatchPost) => api.patchPost(parseInt(id), params),
-    { onSuccess: () => history.push("/posts") }
+  const { mutate } = useMutation(
+    (params: PatchPost) =>
+      id ? api.patchPost(parseInt(id), params) : api.addPost(params),
+    {
+      onSuccess: () => history.push("/posts"),
+    }
   );
+
+  function handleSubmit() {
+    mutate({
+      title,
+      description,
+      image,
+      author,
+      date: date.toLocaleDateString(),
+    });
+  }
 
   useEffect(() => {
     if (!postQuery.data) return;
@@ -43,8 +48,6 @@ export function PostForm({ isEdit = false }: PostFormProps) {
     setDate(new Date(date));
     setAuthor(author);
   }, [postQuery.data]);
-
-  if (postQuery.isLoading) return null;
 
   return (
     <div className="post-form">
@@ -78,27 +81,8 @@ export function PostForm({ isEdit = false }: PostFormProps) {
           required
           onChange={(e) => setAuthor(e.target.value)}
         />
-        <Button
-          variant="primary"
-          onClick={() =>
-            isEdit
-              ? editMutation({
-                  title,
-                  description,
-                  image,
-                  author,
-                  date: date.toLocaleDateString(),
-                } as any)
-              : createMutation({
-                  title,
-                  description,
-                  image,
-                  author,
-                  date: date.toLocaleDateString(),
-                })
-          }
-        >
-          {isEdit ? "Edit" : "Create"} Post
+        <Button variant="primary" onClick={handleSubmit}>
+          {id ? "Edit" : "Create"} Post
         </Button>
       </div>
     </div>

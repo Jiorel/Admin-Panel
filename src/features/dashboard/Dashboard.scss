@@ -1,8 +1,10 @@
+@import "sass/variables.scss";
+
 .dashboard {
   display: flex;
   justify-content: center;
   padding: 20px;
 
-  background: #ffffff;
-  border: 1px solid #b6abab;
+  background: $layout-background-color;
+  border: 1px solid $layout-border-color;
 }

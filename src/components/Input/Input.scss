@@ -1,18 +1,9 @@
+@import "sass/variables.scss";
+
 .input {
-  outline: none;
-  height: 40px;
-
-  background: #ffffff;
-  border: 1px solid #cfd2cf;
-
   color: #000000;
 
   &::placeholder {
-    color: #b2b1b9;
-  }
-
-  &:not(.input--type-checkbox) {
-    padding: 0 10px;
-    appearance: none;
+    color: $input-placeholder-color;
   }
 }

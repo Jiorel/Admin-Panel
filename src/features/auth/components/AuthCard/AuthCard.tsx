@@ -24,7 +24,7 @@ export function AuthCard({
         </Link>
       </div>
       {children}
-      {error && <div className="auth-card__error">{error}</div>}
+      {error && <div className="auth-card__error error">{error}</div>}
     </div>
   );
 }

@@ -1,9 +1,11 @@
+@import "sass/variables.scss";
+
 .post-form {
   width: 600px;
   padding: 20px;
 
-  background: #ffffff;
-  border: 1px solid #b6abab;
+  background: $layout-background-color;
+  border: 1px solid $layout-border-color;
 
   display: flex;
   flex-direction: column;
@@ -23,11 +25,5 @@
         }
       }
     }
-  }
-
-  &__error {
-    text-align: center;
-    font-weight: bold;
-    color: #ff0000;
   }
 }

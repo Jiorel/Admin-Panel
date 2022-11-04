@@ -1,16 +1,9 @@
+@import "sass/variables.scss";
+
 .datepicker {
-  outline: none;
-  appearance: none;
-
-  padding: 0 10px;
-  height: 40px;
-
-  background: #ffffff;
-  border: 1px solid #cfd2cf;
-
   color: #000000;
 
   &::placeholder {
-    color: #b2b1b9;
+    color: $input-placeholder-color;
   }
 }

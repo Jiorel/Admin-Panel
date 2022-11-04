@@ -1,22 +1,20 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useHistory } from "react-router-dom";
+import { useState } from "react";
 import * as api from "api";
-import { Button } from "components";
+import { Button, LoadingSpinner, Modal } from "components";
 import { useAuth } from "contexts";
 import { User } from "types";
 import "./Users.scss";
 
 export function Users() {
-  const history = useHistory();
+  const [modal, setModal] = useState(false);
+
+  const Toggle = () => setModal(!modal);
 
   const queryClient = useQueryClient();
 
   const { user } = useAuth();
   const { data, isLoading } = useQuery(["users"], api.getUsers);
-
-  const handleAddUserClick = () => {
-    history.push("/users/create");
-  };
 
   const { mutate: deleteMutation } = useMutation(api.deleteUser, {
     onSuccess: (_, userId) => {
@@ -25,7 +23,7 @@ export function Users() {
     },
   });
 
-  if (isLoading || user === null) return null;
+  if (isLoading || user === null) return <LoadingSpinner />;
 
   const isAdministrator = user.role === "ADMINISTRATOR";
 
@@ -33,10 +31,13 @@ export function Users() {
     <div className="users">
       <div className="users-header">
         {isAdministrator && (
-          <Button variant="primary" onClick={handleAddUserClick}>
+          <Button variant="primary" onClick={Toggle}>
             Add User
           </Button>
         )}
+        <Modal show={modal} title="My Modal" close={Toggle}>
+          Add User
+        </Modal>
       </div>
       <div className="users-content">
         <table className="users-content__table">
@@ -52,20 +53,17 @@ export function Users() {
           </thead>
           <tbody>
             {data.map(
-              ({ id, email, fullName, gender, role }: User, index: number) => {
+              ({ id, fullName, email, gender, role }: User, index: number) => {
                 return (
                   <tr key={index}>
                     <td>{id}</td>
-                    <td>{email}</td>
                     <td>{fullName}</td>
+                    <td>{email}</td>
                     <td>{gender}</td>
                     <td>{role}</td>
                     {isAdministrator && (
                       <td className="users-content__table__actions">
-                        <Button
-                          variant="primary"
-                          onClick={() => history.push("/users/edit/" + id)}
-                        >
+                        <Button variant="primary" onClick={Toggle}>
                           Edit
                         </Button>
                         <Button

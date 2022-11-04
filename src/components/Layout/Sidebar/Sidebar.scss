@@ -1,8 +1,10 @@
+@import "sass/variables.scss";
+
 .sidebar {
   width: 200px;
-  background: #ffffff;
+  background: $layout-background-color;
   z-index: 2;
-  border-right: 1px solid #b6abab;
+  border-right: 1px solid $input-border-color;
 
   display: flex;
   flex-direction: column;
@@ -13,14 +15,13 @@
     text-decoration: none;
     color: #bcc3c8;
     padding: 10px;
-    font-size: 12px;
     font-weight: bold;
     transition: all 0.5s;
 
     &.active {
-      color: #5086e8;
+      color: rgba($color: $primary-color, $alpha: 0.5);
       background: #f2f6ff;
-      border-left: 5px solid #2968e2;
+      border-left: 5px solid $primary-color;
     }
 
     svg {

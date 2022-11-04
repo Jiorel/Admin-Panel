@@ -1,5 +1,5 @@
 import { AddPost, PatchPost } from "types";
-import { axiosInstance } from "utils";
+import { axiosInstance } from "./axios";
 
 export async function getPosts() {
   const { data } = await axiosInstance.get("/posts");

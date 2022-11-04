@@ -5,14 +5,10 @@ import { useHistory, useParams } from "react-router-dom";
 import * as api from "api";
 import { Button, Input, Select } from "components";
 import { genderSelectOptions } from "config";
-import { EditUser, PatchUser, Role } from "types";
+import { AddUser, EditUser, PatchUser, Role } from "types";
 import "./UserForm.scss";
 
-interface UserFormParams {
-  isEdit?: boolean;
-}
-
-export function UserForm({ isEdit = false }: UserFormParams) {
+export function UserForm() {
   const history = useHistory();
   const { id } = useParams<EditUser>();
 
@@ -21,18 +17,26 @@ export function UserForm({ isEdit = false }: UserFormParams) {
   const [gender, setGender] = useState("masculin");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<Role>("MODERATOR");
+  const [error, setError] = useState("");
 
-  const userId = isEdit ? parseInt(id) : null;
+  const userId = id ? parseInt(id) : null;
   const postQuery = useUserQuery(userId);
 
-  const { mutate: createMutation } = useMutation(api.addUser, {
-    onSuccess: () => history.push("/users"),
-  });
-
-  const { mutate: editMutation } = useMutation(
-    (params: PatchUser) => api.patchUser(parseInt(id), params),
-    { onSuccess: () => history.push("/users") }
+  const { mutate } = useMutation(
+    (params: AddUser | PatchUser) =>
+      id ? api.patchUser(parseInt(id), params) : api.addUser(params as AddUser),
+    {
+      onSuccess: () => history.push("/users"),
+      onError: (error: any) => setError(error.response.data),
+    }
   );
+
+  function handleSubmit() {
+    const userParams = id
+      ? { fullName, email, gender, role }
+      : { fullName, email, gender, role, password };
+    mutate(userParams);
+  }
 
   const roleSelectOptions = [
     { label: "Administrator", value: "ADMINISTRATOR" },
@@ -48,8 +52,6 @@ export function UserForm({ isEdit = false }: UserFormParams) {
     setGender(gender);
     setRole(role);
   }, [postQuery.data]);
-
-  if (postQuery.isLoading) return null;
 
   return (
     <div className="user-form">
@@ -78,7 +80,7 @@ export function UserForm({ isEdit = false }: UserFormParams) {
           value={role}
           onChange={(e) => setRole(e.target.value as Role)}
         />
-        {isEdit ? (
+        {id ? (
           <div />
         ) : (
           <Input
@@ -90,17 +92,11 @@ export function UserForm({ isEdit = false }: UserFormParams) {
           />
         )}
 
-        <Button
-          variant="primary"
-          onClick={() => {
-            isEdit
-              ? editMutation({ fullName, email, gender, role })
-              : createMutation({ fullName, email, gender, role, password });
-          }}
-        >
-          {isEdit ? "Edit" : "Create"}
+        <Button variant="primary" onClick={handleSubmit}>
+          {id ? "Edit" : "Create"}
         </Button>
       </div>
+      {error && <div className="form__error error">{error}</div>}
     </div>
   );
 }

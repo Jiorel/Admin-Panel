@@ -1,5 +1,5 @@
 import { AddUser, PatchUser } from "types";
-import { axiosInstance } from "utils";
+import { axiosInstance } from "./axios";
 
 export async function getUsers() {
   const { data } = await axiosInstance.get("/users");

@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as api from "api";
-import { Button } from "components";
+import { Button, LoadingSpinner } from "components";
 import { Post } from "types";
 import { PostCard } from "../../components";
 import "./Posts.scss";
@@ -13,7 +13,7 @@ export function Posts() {
   const { data, isLoading } = useQuery(["posts"], api.getPosts);
 
   const { mutate: deleteMutation } = useMutation(api.deletePost, {
-    onSuccess: (_, postId) => {
+    onMutate: async (postId) => {
       const newPosts = data.filter((post: Post) => post.id !== postId);
       queryClient.setQueryData(["posts"], newPosts);
     },
@@ -23,7 +23,7 @@ export function Posts() {
     history.push("/posts/create");
   };
 
-  if (isLoading) return null;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="posts">
