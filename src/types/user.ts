@@ -13,7 +13,3 @@ export interface AddUser extends Omit<User, "id"> {
 }
 
 export interface PatchUser extends Omit<User, "id"> {}
-
-export interface EditUser {
-  id: string;
-}

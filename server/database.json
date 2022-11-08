@@ -11,12 +11,12 @@
   ],
   "users": [
     {
-      "email": "varvarel@gmail.com",
-      "password": "$2a$10$51oHKNytUUabV0bLhYKR0uiXgtxV35dbURPZzSIH7.sOXCpHCMFQS",
-      "fullName": "Varvarel",
-      "gender": "masculin",
+      "email": "fullname@gmail.com",
+      "password": "$2a$10$aCYT2W6lPSVKedD8gV3.HedS6SuSpy2u9QCAeuhujOcrivV.60kTa",
+      "fullName": "Bobeico",
+      "gender": "feminin",
       "role": "ADMINISTRATOR",
-      "id": 2
+      "id": 1
     }
   ]
 }
