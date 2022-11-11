@@ -12,9 +12,9 @@
   "users": [
     {
       "email": "fullname@gmail.com",
-      "password": "$2a$10$aCYT2W6lPSVKedD8gV3.HedS6SuSpy2u9QCAeuhujOcrivV.60kTa",
-      "fullName": "Bobeico",
-      "gender": "feminin",
+      "password": "$2a$10$k7hjIHcuQB7FxGgzJhM9seyIDjzfWH9lMUvTr1LMNMwQSt7eb3K56",
+      "fullName": "Iuvic",
+      "gender": "masculin",
       "role": "ADMINISTRATOR",
       "id": 1
     }

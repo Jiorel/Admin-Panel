@@ -17,7 +17,7 @@ export function Users() {
   const { data, isLoading, refetch } = useQuery(["users"], api.getUsers);
 
   const { mutate: deleteMutation } = useMutation(api.deleteUser, {
-    onSuccess: (_, userId) => {
+    onMutate: async (userId) => {
       const newUsers = data.filter((user: User) => user.id !== userId);
       queryClient.setQueryData(["users"], newUsers);
     },
