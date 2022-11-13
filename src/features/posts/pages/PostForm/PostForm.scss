@@ -27,3 +27,10 @@
     }
   }
 }
+
+.create-post {
+  &__error {
+    color: $danger-color;
+    font-weight: bold;
+  }
+}

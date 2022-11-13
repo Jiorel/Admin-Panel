@@ -16,6 +16,7 @@ export function PostForm() {
   const [image, setImage] = useState("");
   const [date, setDate] = useState<Date>(new Date());
   const [author, setAuthor] = useState("");
+  const [error, setError] = useState("");
 
   const postId = id ? parseInt(id) : null;
   const postQuery = usePostQuery(postId);
@@ -29,6 +30,11 @@ export function PostForm() {
   );
 
   function handleSubmit() {
+    if (!title || !description || !author || !image) {
+      setError("Please fill in all the inputs");
+      return;
+    }
+
     mutate({
       title,
       description,
@@ -54,37 +60,38 @@ export function PostForm() {
       <div className="post-form__content">
         <Input
           type="text"
+          required
           placeholder="Title"
           value={title}
-          required
           onChange={(e) => setTitle(e.target.value)}
         />
         <Input
           type="text"
+          required
           placeholder="Description"
           value={description}
-          required
           onChange={(e) => setDescription(e.target.value)}
         />
         <Input
           type="text"
+          required
           placeholder="Image"
           value={image}
-          required
           onChange={(e) => setImage(e.target.value)}
         />
         <DatePicker selected={date} onChange={(date: Date) => setDate(date)} />
         <Input
           type="text"
+          required
           placeholder="Author"
           value={author}
-          required
           onChange={(e) => setAuthor(e.target.value)}
         />
         <Button variant="primary" onClick={handleSubmit}>
           {id ? "Edit" : "Create"} Post
         </Button>
       </div>
+      {error && <div className="create-post__error">{error}</div>}
     </div>
   );
 }

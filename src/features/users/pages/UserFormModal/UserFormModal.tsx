@@ -26,6 +26,7 @@ export function UserFormModal({
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<Role>("MODERATOR");
   const [error, setError] = useState("");
+  console.log(error);
 
   const postQuery = useUserQuery(id);
 
