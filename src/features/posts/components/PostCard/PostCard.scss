@@ -1,4 +1,4 @@
-@import "sass/variables.scss";
+@import "../../../../sass/variables.scss";
 
 .post-card {
   padding: 10px;
@@ -10,7 +10,7 @@
   border: 1px solid $layout-border-color;
 
   &__title {
-    color: grey;
+    color: #494f7d;
     text-align: center;
   }
 
