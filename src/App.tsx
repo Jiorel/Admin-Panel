@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import { useAuth } from "contexts";
 import { LogIn, SignUp } from "features";
 import { Layout, PrivateRoute } from "components";
+import "ebs-design/dist/styles/index.scss";
 
 function App() {
   const { loading } = useAuth();
