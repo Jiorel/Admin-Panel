@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { useUserQuery } from "hooks/queries";
 import { useState, useEffect } from "react";
+import { Button, Input, Select, Modal } from "ebs-design";
 import * as api from "api";
-import { Button, Input, Modal, Select } from "components";
 import { genderSelectOptions } from "config";
 import { AddUser, PatchUser, Role } from "types";
 import "./UserFormModal.scss";
@@ -26,7 +26,6 @@ export function UserFormModal({
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<Role>("MODERATOR");
   const [error, setError] = useState("");
-  console.log(error);
 
   const postQuery = useUserQuery(id);
 
@@ -75,14 +74,14 @@ export function UserFormModal({
   }, [postQuery.data]);
 
   const roleSelectOptions = [
-    { label: "Administrator", value: "ADMINISTRATOR" },
-    { label: "Moderator", value: "MODERATOR" },
+    { value: "ADMINISTRATOR", text: "ADMINISTRATOR" },
+    { value: "MODERATOR", text: "MODERATOR" },
   ];
 
   return (
     <Modal
-      show={isOpen}
       title={`${id ? "Edit" : "Create"} user`}
+      open={isOpen}
       onClose={handleModalClose}
     >
       <div className="user-form">
@@ -92,24 +91,24 @@ export function UserFormModal({
             placeholder="FullName"
             value={fullName}
             required
-            onChange={(e) => setFullName(e.target.value)}
+            onChange={(value) => setFullName(value as string)}
           />
           <Input
             type="email"
             placeholder="Email"
             value={email}
             required
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(value) => setEmail(value as string)}
           />
           <Select
             options={genderSelectOptions}
             value={gender}
-            onChange={(e) => setGender(e.target.value)}
+            onChange={(value) => setGender(value as string)}
           />
           <Select
             options={roleSelectOptions}
             value={role}
-            onChange={(e) => setRole(e.target.value as Role)}
+            onChange={(value) => setRole(value as Role)}
           />
 
           {id ? (
@@ -120,11 +119,11 @@ export function UserFormModal({
               placeholder="Password"
               value={password}
               required
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(value) => setPassword(value as string)}
             />
           )}
 
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button type="primary" onClick={handleSubmit}>
             {id ? "Edit" : "Create"}
           </Button>
         </div>
