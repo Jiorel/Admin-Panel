@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Input, Button, Select } from "components";
+import { useMutation } from "@tanstack/react-query";
+import { Button, Input, Select } from "ebs-design";
 import { genderSelectOptions } from "config";
 import { useAuth } from "contexts";
 import { AuthCard } from "../components";
-import { useMutation } from "@tanstack/react-query";
 
 export function SignUp() {
   const { signup } = useAuth();
@@ -36,35 +36,35 @@ export function SignUp() {
         placeholder="Full name"
         value={fullName}
         required
-        onChange={(e) => setFullName(e.target.value)}
+        onChange={(value) => setFullName(value as string)}
       />
       <Input
         type="email"
         placeholder="Email"
         value={email}
         required
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(value) => setEmail(value as string)}
       />
       <Select
         value={gender}
         options={genderSelectOptions}
-        onChange={(e) => setGender(e.target.value)}
+        onChange={(value) => setGender(value as string)}
       />
       <Input
         type="password"
         placeholder="Password"
         value={password}
         required
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(value) => setPassword(value as string)}
       />
       <Input
         type="password"
         placeholder="Confirm Password"
         value={confirmPassword}
         required
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        onChange={(value) => setConfirmPassword(value as string)}
       />
-      <Button variant="primary" onClick={handleSignUp} disabled={isLoading}>
+      <Button type="primary" onClick={handleSignUp} disabled={isLoading}>
         Sign Up
       </Button>
     </AuthCard>
