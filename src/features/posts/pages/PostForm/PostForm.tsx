@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { usePostQuery } from "hooks/queries";
+import { Input, DatePicker, Button, Form } from "ebs-design";
 import * as api from "api";
-import { Input, DatePicker, Button } from "components";
 import { EditPost, PatchPost } from "types";
 import "./PostForm.scss";
 
@@ -14,7 +14,7 @@ export function PostForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [date, setDate] = useState<Date>(new Date());
+  const [standartDate, setStandartDate] = useState<Date | null>(new Date());
   const [author, setAuthor] = useState("");
   const [error, setError] = useState("");
 
@@ -40,7 +40,7 @@ export function PostForm() {
       description,
       image,
       author,
-      date: date.toLocaleDateString(),
+      date: standartDate!.toLocaleString(),
     });
   }
 
@@ -51,47 +51,50 @@ export function PostForm() {
     setTitle(title);
     setDescription(description);
     setImage(image);
-    setDate(new Date(date));
+    setStandartDate(new Date(date));
     setAuthor(author);
   }, [postQuery.data]);
 
   return (
-    <div className="post-form">
+    <Form className="post-form">
       <div className="post-form__content">
         <Input
           type="text"
           required
           placeholder="Title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(value) => setTitle(value as string)}
         />
         <Input
           type="text"
           required
           placeholder="Description"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(value) => setDescription(value as string)}
         />
         <Input
           type="text"
           required
           placeholder="Image"
           value={image}
-          onChange={(e) => setImage(e.target.value)}
+          onChange={(value) => setImage(value as string)}
         />
-        <DatePicker selected={date} onChange={(date: Date) => setDate(date)} />
+        <DatePicker
+          selected={standartDate}
+          onChange={(date) => setStandartDate(date as Date)}
+        />
         <Input
           type="text"
           required
           placeholder="Author"
           value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          onChange={(value) => setAuthor(value as string)}
         />
-        <Button variant="primary" onClick={handleSubmit}>
+        <Button type="primary" onClick={handleSubmit}>
           {id ? "Edit" : "Create"} Post
         </Button>
       </div>
       {error && <div className="create-post__error">{error}</div>}
-    </div>
+    </Form>
   );
 }
