@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { Card } from "ebs-design";
 import * as api from "api";
 import "./Dashboard.scss";
 
@@ -20,17 +21,17 @@ export function Dashboard() {
     {
       name: "posts",
       value: posts.length,
-      color: "#47B5FF",
+      color: "#3366FF",
     },
     {
       name: "users",
       value: users.length,
-      color: "#FD841F",
+      color: "#33FFCC",
     },
   ];
 
   return (
-    <div className="dashboard">
+    <Card className="dashboard">
       <PieChart width={1100} height={400}>
         <Tooltip />
         <Legend
@@ -55,6 +56,6 @@ export function Dashboard() {
           ))}
         </Pie>
       </PieChart>
-    </div>
+    </Card>
   );
 }
