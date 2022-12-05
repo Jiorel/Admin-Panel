@@ -24,7 +24,7 @@
     font-weight: bold;
   }
 
-  &__content-wrapper {
+  &__content {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -33,5 +33,11 @@
   &__controls {
     display: flex;
     gap: 10px;
+  }
+
+  &__delete-modal {
+    &__footer {
+      padding: 10px;
+    }
   }
 }
