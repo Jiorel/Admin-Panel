@@ -17,6 +17,14 @@
       "gender": "masculin",
       "role": "ADMINISTRATOR",
       "id": 1
+    },
+    {
+      "email": "mrviorelasd@mail.ru",
+      "password": "$2a$10$qWtREtWc.wal2A.mvdN9nu/ptiymYckMRBTR1Ctf6Yx5boBa58Kf.",
+      "fullName": "Viorel@maill.ru",
+      "gender": "masculin",
+      "role": "MODERATOR",
+      "id": 2
     }
   ]
 }
