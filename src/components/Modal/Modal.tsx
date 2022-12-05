@@ -1,5 +1,5 @@
-import { Button } from "components/Button/Button";
 import { PropsWithChildren } from "react";
+import { Button } from "ebs-design";
 import "./Modal.scss";
 
 interface ModalProps {
@@ -22,7 +22,7 @@ export function Modal({
         </header>
         <main className="modal__content">{children}</main>
         <footer className="modal__footer">
-          <Button variant="danger" onClick={onClose}>
+          <Button type="dark" onClick={onClose}>
             Cancel
           </Button>
         </footer>

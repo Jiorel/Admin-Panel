@@ -1,16 +1,19 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import * as api from "api";
-import { Button, LoadingSpinner } from "components";
+import Table from "rc-table";
+import { Button, Loader, Modal } from "ebs-design";
 import { useAuth } from "contexts";
 import { User } from "types";
 import { UserFormModal } from "../UserFormModal/UserFormModal";
 import "./Users.scss";
+import { ColumnType } from "rc-table/lib/interface";
 
 export function Users() {
   const queryClient = useQueryClient();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [editingUserId, setEditingUserId] = useState<number | null>(null);
 
   const { user } = useAuth();
@@ -25,82 +28,114 @@ export function Users() {
 
   const handleEditUser = (id: number) => {
     setEditingUserId(id);
-    setIsOpen(true);
+    setIsFormModalOpen(true);
   };
 
   const handleCreateUser = () => {
     setEditingUserId(null);
-    setIsOpen(true);
+    setIsFormModalOpen(true);
   };
 
-  if (isLoading || user === null) return <LoadingSpinner />;
+  const renderActions = (record: User) => {
+    return (
+      <div className="users-content__table-actions">
+        <Button type="primary" onClick={() => handleEditUser(record.id)}>
+          Edit
+        </Button>
+
+        <Button type="dark" onClick={() => setIsDeleteModalOpen(true)}>
+          Delete
+        </Button>
+
+        <Modal
+          className="user-delete-modal"
+          open={isDeleteModalOpen}
+          title="Are you sure that you want to delete this user?"
+          onClose={() => setIsDeleteModalOpen(false)}
+        >
+          <div className="user-delete-modal__footer">
+            <Button
+              type="primary"
+              onClick={() => {
+                setIsDeleteModalOpen(false);
+                deleteMutation(record.id);
+              }}
+            >
+              Submit
+            </Button>
+          </div>
+        </Modal>
+      </div>
+    );
+  };
+
+  const getTableColumns = () => {
+    const columns: ColumnType<User>[] = [
+      {
+        dataIndex: "id",
+        title: "ID",
+        key: "id",
+      },
+      {
+        dataIndex: "fullName",
+        title: "Full Name",
+        key: "fullName",
+      },
+      {
+        dataIndex: "email",
+        title: "Email",
+        key: "email",
+      },
+      {
+        dataIndex: "gender",
+        title: "Gender",
+        key: "gender",
+      },
+      {
+        dataIndex: "role",
+        title: "Role",
+        key: "role",
+      },
+    ];
+
+    if (isAdministrator) {
+      columns.push({
+        dataIndex: "actions",
+        title: "Actions",
+        key: "actions",
+        render: (_, record) => renderActions(record),
+      });
+    }
+
+    return columns;
+  };
+
+  if (isLoading || user === null) return <Loader loading />;
 
   const isAdministrator = user.role === "ADMINISTRATOR";
 
   return (
     <>
       <UserFormModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        isOpen={isFormModalOpen}
+        setIsOpen={setIsFormModalOpen}
         id={editingUserId}
         onSuccess={refetch}
       />
       <div className="users">
         <div className="users-header">
           {isAdministrator && (
-            <Button variant="primary" onClick={handleCreateUser}>
+            <Button type="primary" onClick={handleCreateUser}>
               Add User
             </Button>
           )}
         </div>
         <div className="users-content">
-          <table className="users-content__table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Gender</th>
-                <th>Role</th>
-                {isAdministrator && <th>Actions</th>}
-              </tr>
-            </thead>
-            <tbody>
-              {data.map(
-                (
-                  { id, fullName, email, gender, role }: User,
-                  index: number
-                ) => {
-                  return (
-                    <tr key={index}>
-                      <td>{id}</td>
-                      <td>{fullName}</td>
-                      <td>{email}</td>
-                      <td>{gender}</td>
-                      <td>{role}</td>
-                      {isAdministrator && (
-                        <td className="users-content__table__actions">
-                          <Button
-                            variant="primary"
-                            onClick={() => handleEditUser(id)}
-                          >
-                            Edit
-                          </Button>
-
-                          <Button
-                            variant="danger"
-                            onClick={() => deleteMutation(id)}
-                          >
-                            Delete
-                          </Button>
-                        </td>
-                      )}
-                    </tr>
-                  );
-                }
-              )}
-            </tbody>
-          </table>
+          <Table
+            columns={getTableColumns()}
+            data={data}
+            rowKey={(record) => record.id}
+          />
         </div>
       </div>
     </>
