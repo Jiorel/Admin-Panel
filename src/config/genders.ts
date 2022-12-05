@@ -1,8 +1,8 @@
 export const genderSelectOptions = [
-  { label: "Masculin", value: "masculin" },
-  { label: "Feminin", value: "feminin" },
+  { value: "masculin", text: "Masculin" },
+  { value: "feminin", text: "Feminin" },
   {
-    label: "Ma abtin",
     value: "none",
+    text: "Ma abtin",
   },
 ];

@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { useAuth } from "contexts";
 import { AuthCard } from "../components";
-import { Input, Button } from "components";
+import { Input, Button } from "ebs-design";
 
 export function LogIn() {
   const history = useHistory();
@@ -29,15 +29,15 @@ export function LogIn() {
         type="email"
         placeholder="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(value) => setEmail(value as string)}
       />
       <Input
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(value) => setPassword(value as string)}
       />
-      <Button variant="primary" onClick={handleLogin} disabled={isLoading}>
+      <Button type="primary" onClick={handleLogin} disabled={isLoading}>
         Log In
       </Button>
     </AuthCard>
